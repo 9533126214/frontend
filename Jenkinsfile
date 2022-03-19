@@ -63,7 +63,7 @@ spec:
     stage('Deploy Dev') {
       // Developer Branches
       when {
-        not { branch 'master' }
+        not { branch 'main' }
         not { branch 'canary' }
       }
       steps {

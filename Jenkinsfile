@@ -24,7 +24,7 @@ spec:
   # Use service account that can deploy to all namespaces
   # serviceAccountName: cd-jenkins
   containers:
-  - name: golang
+  - name: golang-bld
     image: golang:1.10
     command:
     - cat
@@ -43,12 +43,12 @@ spec:
 }
   }
   stages {
-    stage('Test') {
+    stage('codebuild') {
       steps {
         container('golang') {
           sh """
             ln -s `pwd`
-            go test
+            go codebuild
           """
         }
       }

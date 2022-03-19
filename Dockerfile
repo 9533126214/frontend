@@ -27,8 +27,8 @@ ARG SKAFFOLD_GO_GCFLAGS
 RUN go build -gcflags="${SKAFFOLD_GO_GCFLAGS}" -o /go/bin/frontend .
 
 FROM alpine as release
-RUN apk add --no-cache ca-certificates \
-    busybox-extras net-tools bind-tools
+RUN apt-get -y update && apt-get install -qqy \
+
 WORKDIR /src
 COPY --from=builder /go/bin/frontend /src/server
 COPY ./templates ./templates
